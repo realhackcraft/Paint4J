@@ -1,7 +1,14 @@
 package net.paintco.paint;
 
+import java.util.Scanner;
+
 /** Hello world! */
 public class App {
+  Scanner scanner = new Scanner(System.in);
+  int cursorX = 0;
+  int cursorY = 0;
+  Pane pane;
+
   public static void main(String[] args) {
     App app = new App();
     app.initialize();
@@ -18,13 +25,17 @@ public class App {
     String[] doneString = { "Done!", "Enjoy using Paint©!" };
     Pane done = new Pane(doneString);
     System.out.println(done.getString());
-    Thread.sleep(1000);
+    try {
+      Thread.sleep(1000);
+    } catch (Exception e) {
+
+    }
     run();
   }
 
   public void run() {
     clear();
-    Pane pane = new Pane(80, 24);
+    pane = new Pane(80, 24);
     Pixel[][] pixels = new Pixel[80][24];
     for (int i = 0; i < pixels.length; i++) {
       Pixel[] row = pixels[i];
@@ -32,7 +43,30 @@ public class App {
         pixels[i][j] = new Pixel();
       }
     }
+    loop();
+  }
+
+  public void loop() {
     System.out.println(pane.getString());
+    String command = input();
+    switch (command.toLowerCase()) {
+      case "w":
+        break;
+      case "a":
+        break;
+      case "s":
+        break;
+      case "d":
+        break;
+
+      default:
+        break;
+    }
+  }
+
+  public String input() {
+    System.out.print("Use WASD to move cursor; use ← and → to change tool: ");
+    return scanner.nextLine();
   }
 
   public void clear() {
