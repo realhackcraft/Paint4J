@@ -1,6 +1,6 @@
 package net.paintco.paint;
 
-class Utils {
+public class Utils {
 
   public static String makeBox(String input) {
     String[] array = { input };
