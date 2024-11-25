@@ -9,10 +9,8 @@ public class App {
 
   public void initialize() {
     clear();
-    Pane welcome = new Pane(18, 1);
-    for (int i = 0; i < 18; i++) {
-      welcome.setDrawable(0, i, new StringWrapper("Welcome to Paint©!".charAt(i)));
-    }
+    String[] welcomeString = { "Welcome to Paint©!" };
+    Pane welcome = new Pane(welcomeString);
     System.out.println(welcome.getString());
 
     load();
@@ -20,6 +18,21 @@ public class App {
     String[] doneString = { "Done!", "Enjoy using Paint©!" };
     Pane done = new Pane(doneString);
     System.out.println(done.getString());
+    Thread.sleep(1000);
+    run();
+  }
+
+  public void run() {
+    clear();
+    Pane pane = new Pane(80, 24);
+    Pixel[][] pixels = new Pixel[80][24];
+    for (int i = 0; i < pixels.length; i++) {
+      Pixel[] row = pixels[i];
+      for (int j = 0; j < row.length; j++) {
+        pixels[i][j] = new Pixel();
+      }
+    }
+    System.out.println(pane.getString());
   }
 
   public void clear() {
