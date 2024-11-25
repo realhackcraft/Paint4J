@@ -36,7 +36,7 @@ public class Pixel implements Drawable {
 
   @Override
   public void setString(String string) {
-    if (string.equals("▣") {
+    if (string.equals("▣")) {
       isFilled = true;
       hasCursor = true;
     } else if (string.equals("□")) {

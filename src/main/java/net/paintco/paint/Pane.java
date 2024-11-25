@@ -1,6 +1,6 @@
 package net.paintco.paint;
 
-public class Pane implements Drawable{
+public class Pane implements Drawable {
   Drawable[][] content;
   private int width;
   private int height;
@@ -8,12 +8,12 @@ public class Pane implements Drawable{
   public Pane(int width, int height) {
     this.width = width;
     this.height = height;
-    content = new Drawable[width][height]();
+    content = new Drawable[width][height];
   }
 
   @Override
   public String getString() {
-    String[][] strings = new String[width][height]();
+    String[] strings = new String[width];
     for (int i = 0; i < height; i++) {
       Drawable[] col = content[i];
       String row = "";
@@ -23,11 +23,10 @@ public class Pane implements Drawable{
       strings[i] = row;
     }
 
-    return Utils.makeBox(content);
+    return Utils.makeBox(strings);
   }
 
   @Override
   public void setString(String string) {
-    
   }
 }
