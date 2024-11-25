@@ -1,50 +1,38 @@
 public class Pixel {
-    private final int x;
-    private final int y;
     private boolean hasCursor;
     private boolean isFilled;
 
-    public Pixel(int x, int y, boolean hasCursor,) {
-        this.x = x;
-        this.y = y;
+    public Pixel(boolean hasCursor) {
         this.hasCursor = hasCursor;
         isFilled = false;
     }
 
-    public Pixel(int x, int y) {
-        this(x, y, false);
+    public Pixel() {
+        this(false);
     }
 
     // No pixel character yet
-    public String printPixel() {
+    public String returnPixel() {
         if (hasCursor) {
             if (isFilled) {
                 // filled pixel with cursor
-                return "";
+                return "▣";
             } else {
                 // unfilled pixel with cursor
-                return "";
+                return "□";
             }
         } else {
             if (isFilled) {
                 // filled pixel without cursor
-                return "";
+                return "█";
             } else {
                 // unfilled pixel without cursor
-                return "";
+                return " ";
             }
         }
     }
 
     // Getters and Setters;
-    public int getX() {
-        return x;
-    }
-
-    public int getY() {
-        return y;
-    }
-
     public boolean hasCursor() {
         return hasCursor;
     }
