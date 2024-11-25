@@ -9,10 +9,21 @@ public class App {
 
   public void initialize() {
     clear();
-    System.out.println(Utils.makeBox("Welcome to Paint©!"));
+    Pane welcome = new Pane(18, 1);
+    for (int i = 0; i < 18; i++) {
+      welcome.setDrawable(0, i, new StringWrapper("Welcome to Paint©!".charAt(i)));
+    }
+    System.out.println(welcome.getString());
     load();
-    String[] hello = { "Done!", "Enjoy using Paint©!" };
-    System.out.println(Utils.makeBox(hello));
+    Pane done = new Pane(19, 2);
+    String[] doneString = { "Done!", "Enjoy using Paint©!" };
+    for (int i = 0; i < doneString.length; i++) {
+      String string = doneString[i];
+      for (int j = 0; j < string.length(); j++) {
+        done.setDrawable(j, i, new StringWrapper(string.charAt(i)));
+      }
+    }
+    System.out.println(done.getString());
   }
 
   public void clear() {
@@ -22,26 +33,33 @@ public class App {
 
   public void load() {
     try {
+      Pane loader = new Pane(1, 1);
       Thread.sleep(1000);
       clear();
       int duration = 100;
       for (int i = 0; i < 5; i++) {
-        System.out.println(Utils.makeBox("⠋"));
+        loader.setDrawable(0, 0, new StringWrapper("⠋"));
+        System.out.println(loader.getString());
         Thread.sleep(duration);
         clear();
-        System.out.println(Utils.makeBox("⠙"));
+        loader.setDrawable(0, 0, new StringWrapper("⠙"));
+        System.out.println(loader.getString());
         Thread.sleep(duration);
         clear();
-        System.out.println(Utils.makeBox("⠸"));
+        loader.setDrawable(0, 0, new StringWrapper("⠸"));
+        System.out.println(loader.getString());
         Thread.sleep(duration);
         clear();
-        System.out.println(Utils.makeBox("⠴"));
+        loader.setDrawable(0, 0, new StringWrapper("⠴"));
+        System.out.println(loader.getString());
         Thread.sleep(duration);
         clear();
-        System.out.println(Utils.makeBox("⠦"));
+        loader.setDrawable(0, 0, new StringWrapper("⠦"));
+        System.out.println(loader.getString());
         Thread.sleep(duration);
         clear();
-        System.out.println(Utils.makeBox("⠇"));
+        loader.setDrawable(0, 0, new StringWrapper("⠇"));
+        System.out.println(loader.getString());
         Thread.sleep(duration);
         clear();
       }

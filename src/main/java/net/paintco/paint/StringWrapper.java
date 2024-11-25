@@ -7,6 +7,10 @@ public class StringWrapper implements Drawable {
     this.string = string;
   }
 
+  public StringWrapper(char aChar) {
+    this.string = Character.toString(aChar);
+  }
+
   @Override
   public String getString() {
     return this.string;
