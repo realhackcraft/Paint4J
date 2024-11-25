@@ -16,15 +16,46 @@ public class Pane implements Drawable {
     }
   }
 
+  public Pane(String[] string) {
+    int max = 0;
+    for (int i = 0; i < string.length; i++) {
+      String oneString = string[i];
+      if (oneString.length() > max) {
+        max = oneString.length();
+      }
+    }
+
+    this.width = max;
+    this.height = string.length;
+    content = new Drawable[height][width];
+    for (int i = 0; i < height; i++) {
+      String oneString = string[i];
+      for (int j = 0; j < width; j++) {
+        if (oneString.length() > j) {
+          content[i][j] = new StringWrapper(oneString.charAt(j));
+        } else {
+          content[i][j] = new NotDrawable();
+        }
+      }
+    }
+  }
+
   @Override
   public String getString() {
     String[] strings = new String[height];
-    for (int i = 0; i < height; i++) {
+    for (int i = 0; i < content.length; i++) {
       Drawable[] col = content[i];
       String row = "";
       for (Drawable element : col) {
-        row += element.getString();
+        if (element == null) {
+
+          System.out.print("x");
+        } else {
+          System.out.print(" ");
+          row += element.getString();
+        }
       }
+      System.out.println();
       strings[i] = row;
     }
 

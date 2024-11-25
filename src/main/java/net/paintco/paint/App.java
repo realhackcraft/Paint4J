@@ -14,15 +14,11 @@ public class App {
       welcome.setDrawable(0, i, new StringWrapper("Welcome to Paint©!".charAt(i)));
     }
     System.out.println(welcome.getString());
+
     load();
-    Pane done = new Pane(19, 2);
+
     String[] doneString = { "Done!", "Enjoy using Paint©!" };
-    for (int i = 0; i < doneString.length; i++) {
-      String string = doneString[i];
-      for (int j = 0; j < string.length(); j++) {
-        done.setDrawable(j, i, new StringWrapper(string.charAt(i)));
-      }
-    }
+    Pane done = new Pane(doneString);
     System.out.println(done.getString());
   }
 
