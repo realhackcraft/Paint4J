@@ -47,15 +47,8 @@ public class Pane implements Drawable {
       Drawable[] col = content[i];
       String row = "";
       for (Drawable element : col) {
-        if (element == null) {
-
-          System.out.print("x");
-        } else {
-          System.out.print(" ");
-          row += element.getString();
-        }
+        row += element.getString();
       }
-      System.out.println();
       strings[i] = row;
     }
 
