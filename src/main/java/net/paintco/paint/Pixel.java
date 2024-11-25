@@ -1,6 +1,6 @@
 package net.paintco.paint;
 
-public class Pixel {
+public class Pixel implements Drawable {
   private boolean hasCursor;
   private boolean isFilled;
 
@@ -13,8 +13,8 @@ public class Pixel {
     this(false);
   }
 
-  // No pixel character yet
-  public String returnPixel() {
+  @Override
+  public String getString() {
     if (hasCursor) {
       if (isFilled) {
         // filled pixel with cursor
@@ -31,6 +31,23 @@ public class Pixel {
         // unfilled pixel without cursor
         return " ";
       }
+    }
+  }
+
+  @Override
+  public void setString(String string) {
+    if (string.equals("▣") {
+      isFilled = true;
+      hasCursor = true;
+    } else if (string.equals("□")) {
+      isFilled = false;
+      hasCursor = true;
+    } else if (string.equals("█")) {
+      isFilled = false;
+      hasCursor = false;
+    } else if (string.equals(" ")) {
+      isFilled = false;
+      hasCursor = false;
     }
   }
 
