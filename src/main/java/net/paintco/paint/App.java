@@ -36,7 +36,16 @@ public class App {
     clear();
     window = new Window(80, 24);
     StringWrapper[] labels = {
-        new EmojiWrapper("🖌️"), new EmojiWrapper("🗑️"), new StringWrapper("■", "\033[0;31m")
+        new EmojiWrapper("🖌️"),
+        new EmojiWrapper("🗑️"),
+        new StringWrapper("▩"),
+        new StringWrapper("▩", "\033[0;31m"),
+        new StringWrapper("▩", "\033[0;32m"),
+        new StringWrapper("▩", "\033[0;33m"),
+        new StringWrapper("▩", "\033[0;34m"),
+        new StringWrapper("▩", "\033[0;35m"),
+        new StringWrapper("▩", "\033[0;36m"),
+        new StringWrapper("▩", "\033[0;37m"),
     };
     toolbox = new Toolbox(labels);
     Pixel[][] pixels = new Pixel[80][24];
@@ -46,51 +55,87 @@ public class App {
         pixels[i][j] = new Pixel();
       }
     }
+
+    String lastCommand = "";
     while (true) {
-      loop();
+      lastCommand = loop(lastCommand);
     }
   }
 
-  public void loop() {
+  public String loop(String lastCommand) {
     clear();
     System.out.println(window.getString());
     System.out.println(toolbox.getString());
     String command = input();
-    switch (command.toLowerCase()) {
-      case "a":
-        window.moveX(-1);
-        break;
-      case "d":
-        window.moveX(1);
-        break;
-      case "w":
-        window.moveY(-1);
-        break;
-      case "s":
-        window.moveY(1);
-        break;
-      case ",":
-        toolbox.move(-1);
-        break;
-      case ".":
-        toolbox.move(1);
-        break;
-      case " ":
-        draw();
-        break;
-      default:
-        break;
+    command = command.toLowerCase();
+
+    if (command.equals("")) {
+      command = lastCommand;
     }
+
+    for (int i = 0; i < command.length(); i++) {
+      char currentCommand = command.charAt(i);
+      switch (currentCommand) {
+        case 'a':
+          window.moveX(-1);
+          break;
+        case 'd':
+          window.moveX(1);
+          break;
+        case 'w':
+          window.moveY(-1);
+          break;
+        case 's':
+          window.moveY(1);
+          break;
+        case ',':
+          toolbox.move(-1);
+          break;
+        case '.':
+          toolbox.move(1);
+          break;
+        case '1':
+          toolbox.selectColor(2);
+          break;
+        case '2':
+          toolbox.selectColor(3);
+          break;
+        case '3':
+          toolbox.selectColor(4);
+          break;
+        case '4':
+          toolbox.selectColor(5);
+          break;
+        case '5':
+          toolbox.selectColor(6);
+          break;
+        case '6':
+          toolbox.selectColor(7);
+          break;
+        case '7':
+          toolbox.selectColor(8);
+          break;
+        case ' ':
+          draw();
+          break;
+        default:
+          break;
+      }
+    }
+
+    return command.toLowerCase();
   }
 
   public void draw() {
-    int selected = toolbox.getSelected();
-    switch (selected) {
+    int selectedTool = toolbox.getSelectedTool();
+    int selectedColor = toolbox.getSelectedColor();
+    switch (selectedTool) {
       case 0:
-        window.setPixel(new Pixel(true, "\033[0;31m"));
+        window.setPixel(
+            new Pixel(true, "\033[0;" + (28 + (selectedColor == 2 ? -28 : selectedColor)) + "m"));
         break;
       case 1:
-        window.setPixel(new Pixel(false, "\033[0;31m"));
+        window.setPixel(new Pixel(false));
         break;
       default:
         break;
@@ -98,7 +143,7 @@ public class App {
   }
 
   public String input() {
-    System.out.print("Use WASD to move cursor; use , and . to change tool: ");
+    System.out.print("Use WASD to move cursor; use , and . to change tool, 1-7 to change color: ");
     return scanner.nextLine();
   }
 

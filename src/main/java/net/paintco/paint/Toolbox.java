@@ -2,7 +2,8 @@ package net.paintco.paint;
 
 public class Toolbox extends Pane {
   private StringWrapper[] labels;
-  private int selected = 0;
+  private int selectedTool = 0;
+  private int selectedColor = 2;
 
   public Toolbox(StringWrapper[] string) {
     // We don't need width and height, the makeBox code is different
@@ -22,21 +23,21 @@ public class Toolbox extends Pane {
     for (int i = 0; i < labels.length; i++) {
       int length = lengths[i];
 
-      if (selected == i) {
+      if (selectedTool == i || selectedColor == i) {
         out += "┌";
       } else {
         out += " ";
       }
 
       for (int j = 0; j < length; j++) {
-        if (selected == i) {
+        if (selectedTool == i || selectedColor == i) {
           out += "─";
         } else {
           out += " ";
         }
       }
 
-      if (selected == i) {
+      if (selectedTool == i || selectedColor == i) {
         out += "┐";
       } else {
         out += " ";
@@ -45,13 +46,13 @@ public class Toolbox extends Pane {
     out += "\n";
 
     for (int i = 0; i < labels.length; i++) {
-      if (selected == i) {
+      if (selectedTool == i || selectedColor == i) {
         out += "│";
       } else {
         out += " ";
       }
       out += labels[i].getString();
-      if (selected == i) {
+      if (selectedTool == i || selectedColor == i) {
         out += "│";
       } else {
         out += " ";
@@ -62,21 +63,21 @@ public class Toolbox extends Pane {
     for (int i = 0; i < labels.length; i++) {
       int length = lengths[i];
 
-      if (selected == i) {
+      if (selectedTool == i || selectedColor == i) {
         out += "└";
       } else {
         out += " ";
       }
 
       for (int j = 0; j < length; j++) {
-        if (selected == i) {
+        if (selectedTool == i || selectedColor == i) {
           out += "─";
         } else {
           out += " ";
         }
       }
 
-      if (selected == i) {
+      if (selectedTool == i || selectedColor == i) {
         out += "┘";
       } else {
         out += " ";
@@ -89,13 +90,17 @@ public class Toolbox extends Pane {
     labels[index] = string;
   }
 
-  public int getSelected() {
-    return selected;
+  public int getSelectedTool() {
+    return selectedTool;
   }
 
-  public void setSelected(int index) {
+  public int getSelectedColor() {
+    return selectedColor;
+  }
+
+  public void setSelectedTool(int index) {
     if (index < labels.length) {
-      selected = index;
+      selectedTool = index;
     }
   }
 
@@ -109,8 +114,14 @@ public class Toolbox extends Pane {
   }
 
   public void move(int amount) {
-    selected += amount;
-    selected = Math.max(selected, 0);
-    selected = Math.min(labels.length, selected);
+    selectedTool += amount;
+    selectedTool = Math.max(selectedTool, 0);
+    selectedTool = Math.min(1, selectedTool);
+  }
+
+  public void selectColor(int num) {
+    selectedColor = num;
+    selectedColor = Math.max(selectedColor, 2);
+    selectedColor = Math.min(labels.length - 1, selectedColor);
   }
 }
