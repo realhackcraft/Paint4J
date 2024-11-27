@@ -49,16 +49,16 @@ public class App {
     String command = input();
     switch (command.toLowerCase()) {
       case 'a':
-        w.move_x(-1);
+        w.moveX(-1);
         break;
       case 'd':
-        w.move_x(1);
+        w.moveX(1);
         break;
       case 'w':
-        w.move_y(-1)
+        w.moveY(-1)
         break;
       case 's':
-        w.move_y(1)
+        w.moveY(1)
         break;
       case ',':
 

@@ -1,7 +1,5 @@
 package net.paintco.paint;
 
-import java.util.Scanner
-
 public class Window extends Pane{
     private int cursorX, int cursorY;
 
@@ -10,13 +8,13 @@ public class Window extends Pane{
         cursorY=0;
     }
 
-    public move_x(int step){
+    public moveX(int step){
         cursorX+=step;
         cursorX=Math.max(0, cursorX);
         cursorX=Math.min(width, cursorX);
     }
 
-    public void move_y(int step){
+    public void moveY(int step){
         cursorY+=step;
         cursorY=Math.max(0, cursorY);
         cursorY=Math.min(height, cursorY);
@@ -25,7 +23,7 @@ public class Window extends Pane{
     @Override
     public void setDrawable(int x, int y, Drawable drawable) {}
 
-    public void setPixel(int x, int y, Pixel p){
-        content[y][x]=p;
+    public void setPixel(Pixel p){
+        content[cursorY][cursorX]=p;
     }
 }
