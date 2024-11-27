@@ -4,9 +4,9 @@ public class Pixel implements Drawable {
   private boolean hasCursor;
   private boolean isFilled;
 
-  public Pixel(boolean hasCursor) {
-    this.hasCursor = hasCursor;
-    isFilled = false;
+  public Pixel(boolean isFilled) {
+    this.isFilled = isFilled;
+    this.hasCursor = false;
   }
 
   public Pixel() {
@@ -74,5 +74,10 @@ public class Pixel implements Drawable {
 
   public void empty() {
     isFilled = false;
+  }
+
+  @Override
+  public int getLength() {
+    return -1;
   }
 }

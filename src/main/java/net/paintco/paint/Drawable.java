@@ -1,10 +1,10 @@
 package net.paintco.paint;
 
 public interface Drawable {
-  String color;
+  String color = "";
 
-  int getLength();  
-  
+  int getLength();
+
   String getString();
 
   void setString(String string);

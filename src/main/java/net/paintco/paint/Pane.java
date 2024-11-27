@@ -1,7 +1,7 @@
 package net.paintco.paint;
 
 public class Pane implements Drawable {
-  Drawable[][] content;
+  protected Drawable[][] content;
   protected int width;
   protected int height;
 
@@ -90,5 +90,10 @@ public class Pane implements Drawable {
     }
     out += "┘";
     return out;
+  }
+
+  @Override
+  public int getLength() {
+    return -1;
   }
 }

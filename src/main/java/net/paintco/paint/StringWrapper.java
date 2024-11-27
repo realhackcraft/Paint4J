@@ -20,4 +20,9 @@ public class StringWrapper implements Drawable {
   public void setString(String string) {
     this.string = string;
   }
+
+  @Override
+  public int getLength() {
+    return string.length();
+  }
 }

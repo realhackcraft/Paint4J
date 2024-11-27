@@ -4,8 +4,9 @@ import java.util.Scanner;
 
 /** Hello world! */
 public class App {
-  Scanner console = new Scanner(System.in);
-  Window w;
+  Scanner scanner = new Scanner(System.in);
+  Window window;
+  Toolbox toolbox;
 
   public static void main(String[] args) {
     App app = new App();
@@ -33,7 +34,9 @@ public class App {
 
   public void run() {
     clear();
-    pane = new Pane(80, 24);
+    window = new Window(80, 24);
+    StringWrapper[] labels = { new StringWrapper("🖌️ "), new StringWrapper("🗑️ ") };
+    toolbox = new Toolbox(labels);
     Pixel[][] pixels = new Pixel[80][24];
     for (int i = 0; i < pixels.length; i++) {
       Pixel[] row = pixels[i];
@@ -41,30 +44,51 @@ public class App {
         pixels[i][j] = new Pixel();
       }
     }
-    loop();
+    while (true) {
+      loop();
+    }
   }
 
   public void loop() {
-    System.out.println(pane.getString());
+    clear();
+    System.out.println(window.getString());
+    System.out.println(toolbox.getString());
     String command = input();
     switch (command.toLowerCase()) {
-      case 'a':
-        w.moveX(-1);
+      case "a":
+        window.moveX(-1);
         break;
-      case 'd':
-        w.moveX(1);
+      case "d":
+        window.moveX(1);
         break;
-      case 'w':
-        w.moveY(-1)
+      case "w":
+        window.moveY(-1);
         break;
-      case 's':
-        w.moveY(1)
+      case "s":
+        window.moveY(1);
         break;
-      case ',':
+      case ",":
+        toolbox.move(-1);
+        break;
+      case ".":
+        toolbox.move(1);
+        break;
+      case " ":
+        draw();
+        break;
+      default:
+        break;
+    }
+  }
 
+  public void draw() {
+    int selected = toolbox.getSelected();
+    switch (selected) {
+      case 0:
+        window.setPixel(new Pixel(true));
         break;
-      case '.':
-                
+      case 1:
+        window.setPixel(new Pixel(false));
         break;
       default:
         break;

@@ -6,6 +6,11 @@ public class NotDrawable implements Drawable {
   }
 
   @Override
+  public int getLength() {
+    return 1;
+  }
+
+  @Override
   public String getString() {
     return " ";
   }
