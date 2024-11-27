@@ -25,4 +25,13 @@ public class StringWrapper implements Drawable {
   public int getLength() {
     return string.length();
   }
+
+  @Override
+  public String getColor() {
+    return "";
+  }
+
+  @Override
+  public void setColor(String color) {
+  }
 }

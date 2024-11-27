@@ -42,17 +42,7 @@ public class Pane implements Drawable {
 
   @Override
   public String getString() {
-    String[] strings = new String[height];
-    for (int i = 0; i < content.length; i++) {
-      Drawable[] col = content[i];
-      String row = "";
-      for (Drawable element : col) {
-        row += element.getString();
-      }
-      strings[i] = row;
-    }
-
-    return makeBox(strings);
+    return makeBox(content);
   }
 
   public void setDrawable(int x, int y, Drawable drawable) {
@@ -63,23 +53,18 @@ public class Pane implements Drawable {
   public void setString(String string) {
   }
 
-  private String makeBox(String[] inputs) {
+  private String makeBox(Drawable[][] inputs) {
     String out = "┌";
-    int max = 0;
-    for (int i = 0; i < inputs.length; i++) {
-      if (inputs[i].length() > max)
-        max = inputs[i].length();
-    }
+    int max = inputs[0].length;
 
     for (int i = 0; i < max; i++) {
       out += "─";
     }
     out += "┐\n";
-    for (String input : inputs) {
-      int filler = max - input.length();
-      out += "│" + input;
-      for (int i = 0; i < filler; i++) {
-        out += " ";
+    for (Drawable[] row : inputs) {
+      out += "│";
+      for (Drawable input : row) {
+        out += input.getString();
       }
       out += "│\n";
     }
@@ -95,5 +80,14 @@ public class Pane implements Drawable {
   @Override
   public int getLength() {
     return -1;
+  }
+
+  @Override
+  public String getColor() {
+    return "";
+  }
+
+  @Override
+  public void setColor(String color) {
   }
 }

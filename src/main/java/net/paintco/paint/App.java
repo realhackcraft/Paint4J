@@ -85,10 +85,10 @@ public class App {
     int selected = toolbox.getSelected();
     switch (selected) {
       case 0:
-        window.setPixel(new Pixel(true));
+        window.setPixel(new Pixel(true, "\033[0;31m"));
         break;
       case 1:
-        window.setPixel(new Pixel(false));
+        window.setPixel(new Pixel(false, "\033[0;31m"));
         break;
       default:
         break;

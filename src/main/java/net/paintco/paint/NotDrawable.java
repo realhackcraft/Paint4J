@@ -14,4 +14,13 @@ public class NotDrawable implements Drawable {
   public String getString() {
     return " ";
   }
+
+  @Override
+  public String getColor() {
+    return "";
+  }
+
+  @Override
+  public void setColor(String color) {
+  }
 }

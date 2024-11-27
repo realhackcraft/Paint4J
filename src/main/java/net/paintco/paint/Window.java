@@ -23,7 +23,7 @@ public class Window extends Pane {
 
     cursorX += step;
     cursorX = Math.max(0, cursorX);
-    cursorX = Math.min(width, cursorX);
+    cursorX = Math.min(width - 1, cursorX);
 
     Pixel newPixel = (Pixel) (content[cursorY][cursorX]);
     newPixel.giveCursor();
@@ -35,7 +35,7 @@ public class Window extends Pane {
 
     cursorY += step;
     cursorY = Math.max(0, cursorY);
-    cursorY = Math.min(height, cursorY);
+    cursorY = Math.min(height - 1, cursorY);
 
     Pixel newPixel = (Pixel) (content[cursorY][cursorX]);
     newPixel.giveCursor();

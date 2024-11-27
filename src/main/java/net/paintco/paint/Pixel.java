@@ -3,10 +3,18 @@ package net.paintco.paint;
 public class Pixel implements Drawable {
   private boolean hasCursor;
   private boolean isFilled;
+  private String color = "";
 
-  public Pixel(boolean isFilled) {
+  private static final String noColor = "\033[0m";
+
+  public Pixel(boolean isFilled, String color) {
     this.isFilled = isFilled;
     this.hasCursor = false;
+    this.color = color;
+  }
+
+  public Pixel(boolean isFilled) {
+    this(isFilled, noColor);
   }
 
   public Pixel() {
@@ -18,15 +26,15 @@ public class Pixel implements Drawable {
     if (hasCursor) {
       if (isFilled) {
         // filled pixel with cursor
-        return "▣";
+        return color + "▣" + noColor;
       } else {
         // unfilled pixel with cursor
-        return "□";
+        return color + "□" + noColor;
       }
     } else {
       if (isFilled) {
         // filled pixel without cursor
-        return "█";
+        return color + "█" + noColor;
       } else {
         // unfilled pixel without cursor
         return " ";
@@ -77,7 +85,16 @@ public class Pixel implements Drawable {
   }
 
   @Override
+  public void setColor(String color) {
+    this.color = color;
+  }
+
+  public String getColor() {
+    return color;
+  }
+
+  @Override
   public int getLength() {
-    return -1;
+    return 1;
   }
 }
