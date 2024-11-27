@@ -1,0 +1,95 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+class App {
+  - scanner: Scanner
+  - window: Window
+  - toolbox: Toolbox
+  + initialize(): void
+  + run(): void
+  + loop(lastCommand: String): String
+  + draw(): void
+  + input(): String
+  + clear(): void
+  + load(): void
+}
+
+class Window {
+  - cursorX: int
+  - cursorY: int
+  - content: Drawable[][]
+  + moveX(step: int): void
+  + moveY(step: int): void
+  + setPixel(p: Pixel): void
+}
+
+class Toolbox {
+  - labels: StringWrapper[]
+  - selectedTool: int
+  - selectedColor: int
+  + move(amount: int): void
+  + selectColor(num: int): void
+  + setString(string: StringWrapper, index: int): void
+  + getString(): String
+}
+
+class Pane {
+  - width: int
+  - height: int
+  - content: Drawable[][]
+  + getString(): String
+  + setDrawable(x: int, y: int, drawable: Drawable): void
+}
+
+class Pixel {
+  - hasCursor: boolean
+  - isFilled: boolean
+  - color: String
+  + getString(): String
+  + setString(string: String): void
+  + fill(): void
+  + empty(): void
+  + hasCursor(): boolean
+  + giveCursor(): void
+  + removeCursor(): void
+  + setColor(color: String): void
+}
+
+interface Drawable {
+  + getString(): String
+  + setString(string: String): void
+  + getColor(): String
+  + setColor(color: String): void
+}
+
+class StringWrapper {
+  - string: String
+  - color: String
+  + getString(): String
+  + setString(string: String): void
+  + setColor(color: String): void
+  + getColor(): String
+}
+
+class EmojiWrapper {
+  + getLength(): int
+}
+
+class NotDrawable {
+  + getString(): String
+  + setString(string: String): void
+  + getColor(): String
+  + setColor(color: String): void
+}
+
+Window <-- App
+Toolbox <-- App
+Pane <|-- Toolbox
+Pane <|-- Window
+Drawable <|.. Pane
+Drawable <|.. Pixel
+Drawable <|.. StringWrapper
+Drawable <|.. NotDrawable
+StringWrapper <|-- EmojiWrapper
+@enduml
+
