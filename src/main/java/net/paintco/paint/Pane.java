@@ -2,8 +2,8 @@ package net.paintco.paint;
 
 public class Pane implements Drawable {
   Drawable[][] content;
-  private int width;
-  private int height;
+  protected int width;
+  protected int height;
 
   public Pane(int width, int height) {
     this.width = width;
@@ -56,7 +56,7 @@ public class Pane implements Drawable {
   }
 
   public void setDrawable(int x, int y, Drawable drawable) {
-    content[x][y] = drawable;
+    content[y][x] = drawable;
   }
 
   @Override

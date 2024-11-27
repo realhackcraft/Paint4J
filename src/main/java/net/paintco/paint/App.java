@@ -4,10 +4,8 @@ import java.util.Scanner;
 
 /** Hello world! */
 public class App {
-  Scanner scanner = new Scanner(System.in);
-  int cursorX = 0;
-  int cursorY = 0;
-  Pane pane;
+  Scanner console = new Scanner(System.in);
+  Window w;
 
   public static void main(String[] args) {
     App app = new App();
@@ -50,22 +48,31 @@ public class App {
     System.out.println(pane.getString());
     String command = input();
     switch (command.toLowerCase()) {
-      case "w":
+      case 'a':
+        w.move_x(-1);
         break;
-      case "a":
+      case 'd':
+        w.move_x(1);
         break;
-      case "s":
+      case 'w':
+        w.move_y(-1)
         break;
-      case "d":
+      case 's':
+        w.move_y(1)
         break;
+      case ',':
 
+        break;
+      case '.':
+                
+        break;
       default:
         break;
     }
   }
 
   public String input() {
-    System.out.print("Use WASD to move cursor; use ← and → to change tool: ");
+    System.out.print("Use WASD to move cursor; use , and . to change tool: ");
     return scanner.nextLine();
   }
 
