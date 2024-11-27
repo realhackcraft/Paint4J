@@ -10,8 +10,14 @@ public class Toolbox extends Pane {
     this.labels = string;
   }
 
-  private String makeBox(String[] labels, int[] lengths) {
+  private String makeBox(StringWrapper[] labels) {
     String out = "";
+
+    int[] lengths = new int[labels.length];
+
+    for (int i = 0; i < labels.length; i++) {
+      lengths[i] = labels[i].getLength();
+    }
 
     for (int i = 0; i < labels.length; i++) {
       int length = lengths[i];
@@ -22,7 +28,7 @@ public class Toolbox extends Pane {
         out += " ";
       }
 
-      for (int j = 0; j < length - 2; j++) {
+      for (int j = 0; j < length; j++) {
         if (selected == i) {
           out += "─";
         } else {
@@ -44,7 +50,7 @@ public class Toolbox extends Pane {
       } else {
         out += " ";
       }
-      out += labels[i];
+      out += labels[i].getString();
       if (selected == i) {
         out += "│";
       } else {
@@ -62,7 +68,7 @@ public class Toolbox extends Pane {
         out += " ";
       }
 
-      for (int j = 0; j < length - 2; j++) {
+      for (int j = 0; j < length; j++) {
         if (selected == i) {
           out += "─";
         } else {
@@ -95,14 +101,7 @@ public class Toolbox extends Pane {
 
   @Override
   public String getString() {
-    String[] stringLabels = new String[labels.length];
-    int[] lengths = new int[labels.length];
-
-    for (int i = 0; i < labels.length; i++) {
-      stringLabels[i] = labels[i].getString();
-      lengths[i] = labels[i].getLength();
-    }
-    return makeBox(stringLabels, lengths);
+    return makeBox(labels);
   }
 
   @Override

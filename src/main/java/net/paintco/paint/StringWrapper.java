@@ -1,10 +1,17 @@
 package net.paintco.paint;
 
 public class StringWrapper implements Drawable {
-  private String string;
+  protected String string;
+  protected String color = "";
+  protected static final String noColor = "\033[0m";
+
+  public StringWrapper(String string, String color) {
+    this.string = string;
+    this.color = color;
+  }
 
   public StringWrapper(String string) {
-    this.string = string;
+    this(string, "");
   }
 
   public StringWrapper(char aChar) {
@@ -13,7 +20,7 @@ public class StringWrapper implements Drawable {
 
   @Override
   public String getString() {
-    return this.string;
+    return this.color + this.string + noColor;
   }
 
   @Override
@@ -28,10 +35,11 @@ public class StringWrapper implements Drawable {
 
   @Override
   public String getColor() {
-    return "";
+    return this.color;
   }
 
   @Override
   public void setColor(String color) {
+    this.color = color;
   }
 }

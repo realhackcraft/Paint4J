@@ -35,7 +35,9 @@ public class App {
   public void run() {
     clear();
     window = new Window(80, 24);
-    StringWrapper[] labels = { new StringWrapper("🖌️ "), new StringWrapper("🗑️ ") };
+    StringWrapper[] labels = {
+        new EmojiWrapper("🖌️"), new EmojiWrapper("🗑️"), new StringWrapper("■", "\033[0;31m")
+    };
     toolbox = new Toolbox(labels);
     Pixel[][] pixels = new Pixel[80][24];
     for (int i = 0; i < pixels.length; i++) {
