@@ -1,0 +1,4 @@
+.reveal pre {
+  max-height: 50vh; /* Adjust this value as needed */
+  overflow: auto !important;
+}
